@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/* 전체 배경 */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #87CEFA, #FFFACD);
+  min-height: 100vh;
+}
+
+/* 회원정보 수정 박스 */
+.edit-container {
+    max-width: 450px;
+    margin: 80px auto 50px; 
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* 제목 */
+.title {
+  margin: 0;
+  font-size: 28px;
+  color: #FF7F50;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 10px 0 20px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+/* 입력폼 */
+.edit-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #FFB6C1;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.edit-form input:focus {
+  border-color: #FF7F50;
+  outline: none;
+}
+
+/* 수정 불가 필드 스타일 */
+.edit-form input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* 버튼 */
+.edit-form button {
+  width: 100%;
+  padding: 12px;
+  background: #FF7F50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.edit-form button:hover {
+  background: #FF6347;
+}
+
+/* 링크 */
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #FF7F50;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

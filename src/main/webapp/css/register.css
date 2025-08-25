@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* 전체 배경 */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #87CEFA, #FFFACD);
+  height: 100vh;
+}
+
+/* 회원가입 박스 */
+.register-container {
+    max-width: 400px;
+    margin: 80px auto 50px; 
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    /* 이 속성을 추가하여 컨테이너 안의 모든 텍스트를 가운데 정렬합니다. */
+    text-align: center;
+}
+
+/* 제목 */
+.title {
+  margin: 0;
+  font-size: 28px;
+  color: #FF7F50;
+}
+
+.subtitle {
+  margin: 10px 0 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 입력폼 */
+.register-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #FFB6C1;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.register-form input:focus {
+  border-color: #FF7F50;
+  outline: none;
+}
+
+/* 버튼 */
+.register-form button {
+  width: 100%;
+  padding: 12px;
+  background: #FF7F50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.register-form button:hover {
+  background: #FF6347;
+}
+
+/* 로그인 링크 */
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #FF7F50;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

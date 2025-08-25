@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/* 전체 배경 */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #87CEFA, #FFE4B5);
+  min-height: 100vh;
+}
+
+/* 로그인 박스 */
+.login-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center; 
+  /* 너비를 400px로 늘려 제목이 한 줄에 들어갈 공간을 확보합니다. */
+  width: 400px;
+  margin: 80px auto 50px;
+}
+
+/* 제목 */
+.title {
+  margin: 0;
+  font-size: 28px;
+  color: #FF7F50;
+  /* 이 속성을 추가하여 텍스트가 한 줄로 표시되게 합니다. */
+  white-space: nowrap;
+}
+
+/* 서브제목 */
+.subtitle {
+  margin: 10px 0 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 입력폼 */
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #FFB6C1;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.login-form input:focus {
+  border-color: #FF7F50;
+  outline: none;
+}
+
+/* 버튼 */
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background: #FF7F50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.login-form button:hover {
+  background: #FF6347;
+}
+
+/* 에러메시지 */
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
+  display: none; /* 기본 숨김, 로그인 실패 시 표시 */
+}
+
+/* 추가 링크 */
+.extra-links {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.extra-links a {
+  margin: 0 10px;
+  color: #FF7F50;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
