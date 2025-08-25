@@ -1,0 +1,97 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    padding: 50px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+h2 {
+    text-align: center;
+    color: #34495e;
+    margin-bottom: 30px;
+}
+.reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.reservation-table th, .reservation-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+.reservation-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+}
+.reservation-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.reservation-table tbody tr:hover {
+    background-color: #eaf6ff;
+}
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #7f8c8d;
+}
+
+/* "지금 예약하세요!" 링크 스타일 */
+.empty-message a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.empty-message a:hover {
+    text-decoration: underline;
+}
+/* 버튼 기본 스타일 */
+.btn {
+    display: inline-block;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+/* 파란색 취소 버튼 */
+.btn-cancel {
+    background-color: #3498db; /* 파랑 배경 */
+    color: #fff;
+    border: 2px solid #2980b9;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.btn-cancel:hover {
+    background-color: #2980b9;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* 버튼 컨테이너: 테이블 아래 중앙 정렬 */
+.form-buttons {
+    margin-top: 20px;
+    text-align: center; /* 중앙 배치 */
+}
+

@@ -14,9 +14,13 @@ import java.util.List;
 
 
 import com.LSM.dao.BoardDao;
+import com.LSM.dao.ConcertDao;
 import com.LSM.dao.MemberDao;
 import com.LSM.dto.BoardDto;
+import com.LSM.dto.ConcertDto;
 import com.LSM.dto.MemberDto;
+import com.LSM.dto.CommentDto;
+
 
 
 @WebServlet("*.do")
@@ -53,7 +57,7 @@ public class BoardController extends HttpServlet {
 		MemberDao memberDao = new MemberDao();
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		HttpSession session = null;
-	
+		ConcertDao concertDao = new ConcertDao();
 		
 		//List<BoardDto> countDtos = new ArrayList<BoardDto>();
 		
@@ -179,10 +183,29 @@ public class BoardController extends HttpServlet {
 				response.sendRedirect("board.jsp?msg=1");
 				return;
 			} 
+			List<CommentDto> commentDtos = boardDao.commentList(bnum);
+			request.setAttribute("commentDtos", commentDtos);
 			request.setAttribute("boardDto", boardDto);
+			
 
 			viewPage = "content.jsp";
 			
+		
+		} else if(comm.equals("/deleteComment.do")) {
+		    // 댓글 삭제 처리 후 원래 게시글로 이동
+		    session = request.getSession();
+		    String sessionId = (String) session.getAttribute("sessionId");
+		    String cnum = request.getParameter("cnum");
+		    String bnum = request.getParameter("bnum");
+
+		    // 권한 확인 (보안 강화)
+		    CommentDto existingComment = boardDao.getComment(cnum);
+		    if (sessionId != null && sessionId.equals(existingComment.getMemberid())) {
+		        boardDao.deleteComment(cnum);
+		    }
+
+		    response.sendRedirect("content.do?bnum=" + bnum);
+		    return;
 		
 		} else if(comm.equals("/writeOk.do")) { //글목록에서 선택된 글 내용 보여지는 
 			request.setCharacterEncoding("utf-8");
@@ -193,7 +216,8 @@ public class BoardController extends HttpServlet {
 		boardDao.boardWrite(btitle, bcontent, memberid); //새 글이 DB입력
 		response.sendRedirect("list.do"); //포워딩을 하지 않고 강제로 list.do로 이동
 		return; //프로그램의 진행 멈춤
-	} else if(comm.equals("/index.do")) { //홈으로 
+	}  	
+		else if(comm.equals("/index.do")) { //홈으로 
 		viewPage = "index.jsp";
 
 	} else if(comm.equals("/login.do")) {  
@@ -213,8 +237,22 @@ public class BoardController extends HttpServlet {
 			return;
 		}
 
-		viewPage = "list.do";
+		viewPage = "index.do";
 		
+	} else if(comm.equals("/commentOk.do")) { //댓글 등록요청
+		request.setCharacterEncoding("utf-8");
+		
+		String bnum = request.getParameter("bnum"); //원글
+		String comment = request.getParameter("comment"); //댓글
+		
+		session = request.getSession();
+		String commentId = (String) session.getAttribute("sessionId"); //현재 로그인되어 있는 아이디(댓글 쓴 아이디)
+		System.out.println(commentId);
+		boardDao.commentWrite(bnum, commentId, comment); //댓글 쓰기 실행
+		
+		response.sendRedirect("content.do?bnum="+bnum);
+		return;
+		//viewPage = "content.do";	
 	} else if (comm.equals("/register.do")) {
 	    // 1. 회원가입 폼을 보여주는 역할
 	    // 세션 체크는 필요에 따라 추가
@@ -300,11 +338,77 @@ public class BoardController extends HttpServlet {
 	    // 로그아웃 후 홈으로 이동 + 메시지 전달
 	    response.sendRedirect("index.jsp?msg=logout_success");
 	    return;
-	}	else {
-		viewPage = "index.jsp";
-	}
+	}	
+		
+	// 콘서트 예약 기능
+	else if(comm.equals("/concert.do")) {
+		// GET 요청을 처리하여 콘서트 예약 페이지를 보여줍니다.
+		viewPage = "concert.jsp";
 	
-		//RequestDispatcher dispacher = request.getRequestDispatcher(conPath); 
+		// 콘서트 예약 처리
+	} else if (comm.equals("/reserveOk.do")) {
+		session = request.getSession();
+		String sessionId = (String) session.getAttribute("sessionId");
+
+		if (sessionId == null || sessionId.isEmpty()) {
+			response.sendRedirect("login.do?msg=2");
+			return;
+		}
+		
+		String concertIdStr = request.getParameter("concertId");
+		String reserveDate = request.getParameter("reserveDate");
+		String ticketCountStr = request.getParameter("ticketCount");
+
+		if (concertIdStr == null || concertIdStr.isEmpty() ||
+			reserveDate == null || reserveDate.isEmpty() ||
+			ticketCountStr == null || ticketCountStr.isEmpty()) {
+			response.sendRedirect("concert.do?msg=error");
+			return;
+		}
+		
+		// ticketCountStr이 숫자가 아닌 경우 에러 방지
+		String concertId = concertIdStr;
+		int ticketCount = 0;
+		try {
+			
+			ticketCount = Integer.parseInt(ticketCountStr);
+		} catch (NumberFormatException e) {
+			System.err.println("티켓 수 또는 콘서트 ID가 유효한 숫자가 아닙니다.");
+			response.sendRedirect("concert.do?msg=error");
+			return;
+		}
+
+		int result = concertDao.reserveConcert(sessionId, concertId, reserveDate, ticketCount);
+		
+		if(result > 0) {
+			request.setAttribute("message", "콘서트 예약이 완료되었습니다!");
+			request.setAttribute("concertId", concertId);
+			request.setAttribute("reserveDate", reserveDate);
+			request.setAttribute("ticketCount", ticketCount);
+			viewPage = "reserveList.do";
+		} else {
+			request.setAttribute("message", "예약에 실패했습니다. 다시 시도해 주세요.");
+			viewPage = "concert.jsp";
+		}
+	
+	// 예약 목록 조회 기능
+	} else if (comm.equals("/reserveList.do")) {
+	    session = request.getSession();
+	    String sessionId = (String) session.getAttribute("sessionId");
+
+	    if (sessionId == null || sessionId.isEmpty()) {
+	        response.sendRedirect("login.do?msg=2");
+	        return;
+	    }
+
+	    List<ConcertDto> reservationList = concertDao.Reserveinfo(sessionId);
+	    request.setAttribute("reservationList", reservationList);
+	    
+	    viewPage = "reserveList.jsp";
+	
+		} else {
+			viewPage = "index.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);	
 	

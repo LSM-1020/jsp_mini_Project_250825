@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/* 공통 스타일은 style.css에 정의됨 */
+
+/* 메인 컨테이너 */
+.concert-container {
+    max-width: 900px;
+    margin: 80px auto 50px;
+    padding: 20px;
+    text-align: center;
+}
+
+.concert-container .title {
+  font-size: 2.5em;
+  color: #FF7F50;
+  margin-bottom: 10px;
+}
+
+.concert-container .subtitle {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* 콘서트 목록 */
+.concert-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.concert-item {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 380px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.concert-item:hover {
+    transform: translateY(-10px);
+}
+
+.concert-poster {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.concert-item h2, .concert-item p, .concert-item span {
+    padding: 0 20px;
+    margin: 10px 0;
+}
+
+.concert-title {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.concert-date, .concert-location {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.concert-price {
+    display: inline-block;
+    background: #FF7F50;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 10px 20px 20px;
+}
+
+/* 예약 섹션 */
+.reservation-section {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.section-title {
+    color: #4db8ff;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.login-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border: 1px solid #bce2ff;
+    border-radius: 10px;
+    color: #333;
+}
+
+.login-message a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}

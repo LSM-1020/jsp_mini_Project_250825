@@ -50,6 +50,56 @@
       <a href="list.do" class="btn btn-back">목록으로</a>
     </div>
   </div>
+  
+  <div class="comment-section">
+  <div class="comment-write">
+  <h2>댓글 달기</h2>
+  
+  <c:choose>
+    <%-- 로그인 상태일 때 --%>
+    <c:when test="${not empty sessionScope.sessionId}">
+      <form action="commentOk.do" method="post">
+        <input type="hidden" name="bnum" value="${boardDto.bnum}">
+        <textarea name="comment" class="comment-input" rows="3" placeholder="댓글을 입력하세요."></textarea>
+        <button type="submit" class="btn btn-comment-submit">등록</button>
+      </form>
+    </c:when>
+
+    <%-- 로그인하지 않은 상태일 때 --%>
+    <c:otherwise>
+      <div class="comment-login-prompt">
+        <p>로그인 후 댓글을 작성할 수 있습니다.</p><br>
+        <a href="login.do" class="btn btn-login-prompt">로그인</a>
+      </div>
+    </c:otherwise>
+  </c:choose>
+</div>
+  <hr class="comment-divider">
+
+   <div class="comment-list">
+    <h2>기존 댓글 목록</h2>
+    <c:forEach items="${commentDtos}" var="commentDto">
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-author">${commentDto.memberid}</span>
+          <span class="comment-date">${commentDto.cdate}</span>
+        </div>
+        <p class="comment-content">${commentDto.comment}</p>
+        
+        <%-- 로그인한 사용자와 댓글 작성자가 동일할 경우에만 수정/삭제 버튼 표시 --%>
+        <c:if test="${sessionScope.sessionId == commentDto.memberid}">
+          <div class="comment-actions">
+     
+            <a href="deleteComment.do?cnum=${commentDto.cnum}&bnum=${boardDto.bnum}" class="btn btn-comment-delete">삭제</a>
+          </div>
+        </c:if>
+      </div>
+    </c:forEach>
+    <c:if test="${empty commentDtos}">
+      <p class="no-comments">아직 댓글이 없습니다. 첫 번째 댓글을 작성해 보세요!</p>
+    </c:if>
+  </div>
+  </div>
 
   <!-- Footer Include -->
   <%@ include file="include/footer.jsp" %>

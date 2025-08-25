@@ -293,3 +293,220 @@ body {
 .post-buttons .btn-back:hover {
   background: #666;
 }
+/* 댓글 섹션 */
+.comment-section {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.comment-section h2 {
+  font-size: 1.8em;
+  color: #333;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* 댓글 작성 폼 */
+.comment-write {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.comment-write form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.comment-input:focus {
+  border-color: #FF7F50;
+  outline: none;
+}
+
+.btn-comment-submit, .btn-login-prompt {
+  align-self: flex-end;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: #4db8ff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-comment-submit:hover, .btn-login-prompt:hover {
+  background: #3385ff;
+}
+
+.btn-login-prompt {
+  background: #FF7F50;
+}
+
+/* 댓글 섹션 */
+.comment-section {
+  max-width: 800px; /* 최대 너비를 줄여 전체 컨테이너 크기 축소 */
+  margin: 40px auto; /* 위아래 여백을 줄임 */
+  padding: 15px; /* 내부 여백을 줄임 */
+  background: #fff;
+  border-radius: 8px; /* 모서리 둥근 정도를 줄임 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* 그림자 효과를 부드럽게 */
+}
+
+.comment-section h2 {
+  font-size: 1.5em; /* 제목 글씨 크기 축소 */
+  color: #333;
+  text-align: left;
+  margin-bottom: 15px; /* 아래쪽 여백을 줄임 */
+}
+
+/* 댓글 작성 폼 */
+.comment-write {
+  text-align: left;
+  margin-bottom: 20px; /* 아래쪽 여백을 줄임 */
+}
+
+.comment-input {
+  width: 100%;
+  padding: 8px; /* 패딩을 줄여 크기 축소 */
+  border: 1px solid #ddd;
+  border-radius: 6px; /* 모서리 둥근 정도 축소 */
+  font-size: 13px; /* 폰트 사이즈 축소 */
+  resize: none;
+  min-height: 60px; /* 최소 높이 축소 */
+}
+
+.comment-input:focus {
+  border-color: #FF7F50;
+  outline: none;
+}
+
+/* 댓글 등록 버튼 크기 및 폰트 축소 */
+.btn-comment-submit, .btn-login-prompt {
+  align-self: flex-end;
+  padding: 8px 16px; /* 패딩을 줄여 크기 축소 */
+  margin-top: 8px; /* 위쪽 여백 축소 */
+  border: none;
+  border-radius: 6px; /* 모서리 둥근 정도 축소 */
+  font-size: 13px; /* 폰트 사이즈 축소 */
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: #4db8ff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-comment-submit:hover, .btn-login-prompt:hover {
+  background: #3385ff;
+}
+
+.btn-login-prompt {
+  background: #FF7F50;
+}
+
+/* 댓글 목록 */
+.comment-list {
+  text-align: left;
+}
+
+.comment-divider {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+  margin: 30px 0; /* 위아래 여백을 줄임 */
+}
+
+.comment-item {
+  padding: 15px; /* 패딩을 줄여 크기 축소 */
+  border: 1px solid #f0f0f0;
+  border-radius: 6px; /* 모서리 둥근 정도를 줄임 */
+  margin-bottom: 10px; /* 아래쪽 여백을 줄임 */
+  background: #fafafa;
+}
+
+.comment-meta {
+  font-size: 0.8em; /* 폰트 사이즈 축소 */
+  color: #777;
+  margin-bottom: 8px; /* 아래쪽 여백을 줄임 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #555;
+}
+
+.comment-date {
+  font-size: 0.7em; /* 폰트 사이즈 축소 */
+  color: #999;
+}
+
+.comment-content {
+  margin: 0;
+  line-height: 1.5; /* 줄 간격을 줄여서 공간 활용 */
+  white-space: pre-wrap;
+  font-size: 14px; /* 댓글 내용 폰트 사이즈 축소 */
+}
+
+.no-comments {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 15px 0; /* 패딩을 줄임 */
+  font-size: 14px; /* 폰트 사이즈 축소 */
+}
+/* 댓글 수정/삭제 버튼 컨테이너 */
+.comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.btn-comment-edit,
+.btn-comment-delete {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-comment-edit {
+  color: white;
+  background-color: #4db8ff;
+}
+
+.btn-comment-edit:hover {
+  background-color: #3385ff;
+}
+
+.btn-comment-delete {
+  color: white;
+  background-color: #ff4d4d;
+}
+
+.btn-comment-delete:hover {
+  background-color: #cc0000;
+}
